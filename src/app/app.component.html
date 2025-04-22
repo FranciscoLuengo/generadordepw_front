@@ -1,5 +1,7 @@
-<h1 class="text-3xl font-bold text-emerald-500 underline">
-    Hello world!
-</h1>
-<app-header></app-header>
-<router-outlet />
+<div class="min-h-screen flex flex-col">
+    <app-header></app-header>
+    <main class="bg-white dark:bg-gray-900 flex-grow pt-18">
+        <router-outlet />
+    </main>
+    <app-footer class="mt-auto"></app-footer> <!-- mt-auto ayuda a empujarlo hacia abajo -->
+</div>

@@ -1,2 +1,17 @@
 @import "tailwindcss";
-@plugin "tailwindcss-primeui";
+@import "primeicons/primeicons.css";
+@import "tailwindcss-primeui";
+
+/* html {
+    font-family: Inter var, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+} */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* styles.css (global) */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    /* Opcional: Asegura consistencia en fuentes */
+}
