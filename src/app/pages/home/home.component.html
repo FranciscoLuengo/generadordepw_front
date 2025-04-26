@@ -1,3 +1,60 @@
-<div class="bg-white dark:bg-gray-900">
-    <span class="text-white dark:text-gray-900 bg-emerald-400">aASDASDASD</span>
+<div class="bg-white dark:bg-gray-900 flex justify-center min-h-screen px-4">
+    <div class="flex-row w-full max-w-4xl">
+        <div class="text-center">
+            <h1 class="text-3xl md:text-5xl dark:text-white font-bold">Generar una contraseña aleatoria y segura</h1>
+        </div>
+        <div class="mt-5 flex justify-center">
+            <h1 class="text-lg md:text-xl dark:text-white text-center">
+                Utiliza el generador de contraseñas para crear instantáneamente una contraseña segura y aleatoria
+            </h1>
+        </div>
+        <!-- card de las palabras -->
+        <div class="mt-5 flex justify-center">
+            <div class="card dark:bg-gray-800 bg-white shadow-lg rounded-lg p-5 w-full max-w-2xl">
+                <div class="flex flex-row gap-2 items-center">
+                    <input type="text"
+                        class="w-full dark:bg-gray-800 text-xl sm:text-3xl p-2 dark:text-white focus:outline-none border-b dark:border-gray-700"
+                         [(ngModel)]=inputValue />
+                    <div class="flex gap-2 mt-3 sm:mt-0">
+                        <p-button icon="pi pi-copy" class="dark:text-white" [rounded]="true" [text]="true"
+                            aria-label="tes" (onClick)="copyToClipboard()" />
+                        <p-button icon="pi pi-sync" (onClick)="reloadRandomString()" class="dark:text-white" [rounded]="true" [text]="true" />
+                    </div>
+                </div>
+                <!-- <div class="mt-4">
+                    <p-progressbar [value]="calculatePasswordStrength()" />
+                </div> -->
+            </div>
+        </div>
+
+    <!-- segunda card -->
+    <div class="mt-5 flex justify-center">
+        <div class="card dark:bg-gray-800 bg-white shadow-[0_0_20px_rgba(0,0,0,0.15)] rounded-lg p-5 w-full max-w-2xl">    <div class="flex flex-row gap-2 items-center">
+                <span class="dark:text-white text-2xl md:text-3xl">Personalice su contraseña</span>
+            </div>
+            <div class="mt-4">
+                <span class="dark:text-white">Longitud de la contraseña</span>
+            </div>
+            <div class="mt-4 flex flex-row gap-6 items-center">
+                <div class="shadow-4xl bg-gray-200 dark:bg-gray-700 rounded-md">
+                    <input type="number" class="rounded-sm outline-none dark:border-gray-300 dark:text-white w-20 p-3" placeholder="1"
+                        [(ngModel)]="inputNumberValue" (change)="updateInputValues(inputNumberValue)" />
+                </div>
+                <div class="w-full">
+                    <p-slider [(ngModel)]="inputNumberValue" (onChange)="onSliderChange($event)" styleClass="p-1 rounded-lg"
+                        min="1" max="50"></p-slider>
+                </div>
+            </div>
+            <div class="card flex justify-center mt-5 dark:bg-gray-800">
+                <div class="flex flex-row gap-2">
+                   <input type="checkbox" class="bg-red-500" [(ngModel)]="includeUppercase" (change)="updateInputValues(inputNumberValue)" /> <span class="dark:text-white">mayúsculas</span>
+                    <input type="checkbox" [(ngModel)]="includeLowercase" (change)="updateInputValues(inputNumberValue)" /> <span class="dark:text-white">minúsculas</span>
+                    <input type="checkbox" [(ngModel)]="includeNumbers" (change)="updateInputValues(inputNumberValue)" /> <span class="dark:text-white">números</span>
+                    <input type="checkbox" [(ngModel)]="includeSymbols" (change)="updateInputValues(inputNumberValue)" /> <span class="dark:text-white">símbolos</span>
+                    <input type="checkbox"  [(ngModel)]="includesAll" (change)="updateInputValues(inputNumberValue)" /> <span class="dark:text-white">todo</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 </div>
