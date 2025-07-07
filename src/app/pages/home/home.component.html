@@ -47,14 +47,13 @@
             </div>
             <div class="card flex justify-center mt-5 dark:bg-gray-800">
                 <div class="flex flex-row gap-2">
-                   <input type="checkbox" class="bg-red-500" [(ngModel)]="includeUppercase" (change)="updateInputValues(inputNumberValue)" /> <span class="dark:text-white">mayúsculas</span>
-                    <input type="checkbox" [(ngModel)]="includeLowercase" (change)="updateInputValues(inputNumberValue)" /> <span class="dark:text-white">minúsculas</span>
-                    <input type="checkbox" [(ngModel)]="includeNumbers" (change)="updateInputValues(inputNumberValue)" /> <span class="dark:text-white">números</span>
-                    <input type="checkbox" [(ngModel)]="includeSymbols" (change)="updateInputValues(inputNumberValue)" /> <span class="dark:text-white">símbolos</span>
-                    <input type="checkbox"  [(ngModel)]="includesAll" (change)="updateInputValues(inputNumberValue)" /> <span class="dark:text-white">todo</span>
+                    <input type="checkbox" [(ngModel)]="includesAll" (change)="onToggleAll(includesAll)"> <span class="dark:text-white">Todos</span>
+                    <input type="checkbox" [(ngModel)]="includeUppercase" (change)="onToggleIndividual()"> <span class="dark:text-white">Mayúsculas</span> 
+                    <input type="checkbox" [(ngModel)]="includeLowercase" (change)="onToggleIndividual()"> <span class="dark:text-white">Minúsculas</span> 
+                    <input type="checkbox" [(ngModel)]="includeNumbers" (change)="onToggleIndividual()"> <span class="dark:text-white">Números</span> 
+                    <input type="checkbox" [(ngModel)]="includeSymbols" (change)="onToggleIndividual()"> <span class="dark:text-white">Símbolos</span> 
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </div>
