@@ -13,7 +13,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     styleUrl: './home.component.css'
 })
 export class HomeComponent {
-    inputValue: string = "";
+    inputValue: string = "x852*[Q]??Mm";
     inputNumberValue: number = 12;
     includeUppercase: boolean = false;
     includeLowercase: boolean = false;
@@ -24,7 +24,7 @@ export class HomeComponent {
     constructor() {
         // Al iniciar, activamos todos los checkboxes porque includesAll es true
         this.toggleAllCheckboxes(true);
-        this.generateRandomString(this.inputNumberValue);
+        
     }
 
     public onSliderChange($event: any) {
