@@ -1,83 +1,82 @@
-<div class="bg-white dark:bg-gray-900 flex justify-center min-h-screen px-4">
+<div class="bg-primary flex justify-center min-h-screen px-4">
     <div class="flex-row w-full max-w-4xl">
         <div class="text-center">
-            <h1 class="text-3xl md:text-5xl dark:text-white font-bold">Generar una contraseña aleatoria y segura</h1>
+            <h1 class="text-3xl md:text-5xl text-primary font-bold">
+                Generar una contraseña aleatoria y segura
+            </h1>
         </div>
         <div class="mt-5 flex justify-center">
-            <h1 class="text-lg md:text-xl dark:text-white text-center">
+            <h1 class="text-lg md:text-xl text-primary text-center">
                 Utiliza el generador de contraseñas para crear instantáneamente una contraseña segura y aleatoria
             </h1>
         </div>
+
         <!-- card de las palabras -->
         <div class="mt-5 flex justify-center">
-            <div class="card dark:bg-gray-800 bg-white shadow-lg rounded-lg p-5 w-full max-w-2xl">
+            <div class="card bg-card shadow-lg rounded-lg p-5 w-full max-w-2xl">
                 <div class="flex flex-row gap-2 items-center">
                     <input type="text"
-                        class="w-full dark:bg-gray-800 text-xl sm:text-3xl p-2 dark:text-white focus:outline-none border-b dark:border-gray-700"
-                        [(ngModel)]=inputValue />
+                        class="w-full bg-card text-xl sm:text-3xl p-2 text-primary focus:outline-none border-b border-primary"
+                        [(ngModel)]="inputValue" readonly />
                     <div class="flex gap-2 mt-3 sm:mt-0">
-                        <p-button icon="pi pi-copy" class="dark:text-white" [rounded]="true" [text]="true"
-                            aria-label="tes" (onClick)="copyToClipboard()" />
-                        <p-button icon="pi pi-sync" (onClick)="reloadRandomString()" class="dark:text-white"
-                            [rounded]="true" [text]="true" />
+                        <p-button icon="pi pi-copy" [rounded]="true" [text]="true" aria-label="Copiar contraseña"
+                            (onClick)="copyToClipboard()" />
+                        <p-button icon="pi pi-sync" (onClick)="reloadRandomString()" [rounded]="true" [text]="true"
+                            aria-label="Generar nueva contraseña" />
                     </div>
                 </div>
-                <!-- <div class="mt-4">
-                    <p-progressbar [value]="calculatePasswordStrength()" />
-                </div> -->
             </div>
         </div>
 
         <!-- segunda card -->
         <div class="mt-5 flex justify-center">
-            <div
-                class="card dark:bg-gray-800 bg-white shadow-[0_0_20px_rgba(0,0,0,0.15)] rounded-lg p-5 w-full max-w-2xl">
+            <div class="card bg-card shadow-[0_0_20px_rgba(0,0,0,0.15)] rounded-lg p-5 w-full max-w-2xl">
                 <div class="flex flex-row gap-2 items-center">
-                    <span class="dark:text-white text-2xl md:text-3xl">Personalice su contraseña</span>
+                    <span class="text-primary text-2xl md:text-3xl">Personalice su contraseña</span>
                 </div>
                 <div class="mt-4">
-                    <span class="dark:text-white">Longitud de la contraseña</span>
+                    <span class="text-primary">Longitud de la contraseña</span>
                 </div>
                 <div class="mt-4 flex flex-row gap-6 items-center">
-                    <div class="shadow-4xl bg-gray-200 dark:bg-gray-700 rounded-md">
-                        <input type="number"
-                            class="rounded-sm outline-none dark:border-gray-300 dark:text-white w-20 p-3"
+                    <div class="shadow-4xl bg-secondary rounded-md">
+                        <input type="number" class="rounded-sm outline-none bg-transparent text-primary w-20 p-3"
                             placeholder="1" [(ngModel)]="inputNumberValue"
                             (change)="updateInputValues(inputNumberValue)" />
                     </div>
                     <div class="w-full">
                         <p-slider [(ngModel)]="inputNumberValue" (onChange)="onSliderChange($event)"
-                            styleClass="p-1 rounded-lg" min="1" max="50"></p-slider>
+                            styleClass="p-1 rounded-lg" [min]="1" [max]="50"></p-slider>
                     </div>
                 </div>
-                <div class="card flex justify-center mt-5 dark:bg-gray-800 p-4 rounded-lg">
+                <div class="card flex justify-center mt-5 bg-secondary p-4 rounded-lg">
                     <div class="grid grid-cols-2 sm:flex gap-2">
                         <div class="flex items-center gap-2">
                             <input type="checkbox" [(ngModel)]="includesAll" (change)="onToggleAll(includesAll)" />
-                            <span class="dark:text-white">Todos</span>
+                            <span class="text-primary">Todos</span>
                         </div>
 
                         <div class="flex items-center gap-2">
                             <input type="checkbox" [(ngModel)]="includeUppercase" (change)="onToggleIndividual()" />
-                            <span class="dark:text-white">Mayúsculas</span>
+                            <span class="text-primary">Mayúsculas</span>
                         </div>
 
                         <div class="flex items-center gap-2">
                             <input type="checkbox" [(ngModel)]="includeLowercase" (change)="onToggleIndividual()" />
-                            <span class="dark:text-white">Minúsculas</span>
+                            <span class="text-primary">Minúsculas</span>
                         </div>
 
                         <div class="flex items-center gap-2">
                             <input type="checkbox" [(ngModel)]="includeNumbers" (change)="onToggleIndividual()" />
-                            <span class="dark:text-white">Números</span>
+                            <span class="text-primary">Números</span>
                         </div>
 
                         <div class="flex items-center gap-2">
                             <input type="checkbox" [(ngModel)]="includeSymbols" (change)="onToggleIndividual()" />
-                            <span class="dark:text-white">Símbolos</span>
+                            <span class="text-primary">Símbolos</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>

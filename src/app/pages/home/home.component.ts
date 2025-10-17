@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { ProgressBarModule } from 'primeng/progressbar';
@@ -10,29 +10,27 @@ import { CheckboxModule } from 'primeng/checkbox';
     selector: 'app-home',
     imports: [ButtonModule, CardModule, ProgressBarModule, SliderModule, FormsModule, CheckboxModule],
     templateUrl: './home.component.html',
-    styleUrl: './home.component.css'
 })
-export class HomeComponent {
-    inputValue: string = "x852*[Q]??Mm";
+export class HomeComponent implements OnInit {
+    inputValue: string = '';
     inputNumberValue: number = 12;
-    includeUppercase: boolean = false;
-    includeLowercase: boolean = false;
-    includeNumbers: boolean = false;
-    includeSymbols: boolean = false;
+    includeUppercase: boolean = true;
+    includeLowercase: boolean = true;
+    includeNumbers: boolean = true;
+    includeSymbols: boolean = true;
     includesAll: boolean = true;
 
-    constructor() {
-        // Al iniciar, activamos todos los checkboxes porque includesAll es true
-        this.toggleAllCheckboxes(true);
-        
+    ngOnInit(): void {
+        // Generar contraseña inicial
+        this.inputValue = this.generateRandomString(this.inputNumberValue);
     }
 
-    public onSliderChange($event: any) {
+    public onSliderChange($event: any): void {
         const newLength = $event.value;
         this.updateInputValues(newLength);
     }
 
-    public updateInputValues(length: number) {
+    public updateInputValues(length: number): void {
         this.inputNumberValue = length;
         this.inputValue = this.generateRandomString(length);
     }
@@ -49,28 +47,30 @@ export class HomeComponent {
         if (this.includeNumbers) characters += numbers;
         if (this.includeSymbols) characters += symbols;
 
-        // Si no hay caracteres seleccionados (no debería pasar porque includesAll inicia en true)
+        // Si no hay caracteres seleccionados, usar todos
         if (characters.length === 0) {
             characters = mayus + minus + numbers + symbols;
             this.toggleAllCheckboxes(true);
         }
 
-        // Generar la cadena aleatoria
+        // Generar la cadena aleatoria de forma más segura
         let result = '';
         const charactersLength = characters.length;
+        const randomValues = new Uint32Array(length);
+        crypto.getRandomValues(randomValues);
+        
         for (let i = 0; i < length; i++) {
-            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            result += characters.charAt(randomValues[i] % charactersLength);
         }
 
         return result;
     }
 
-    public reloadRandomString() {
+    public reloadRandomString(): void {
         this.inputValue = this.generateRandomString(this.inputNumberValue);
     }
 
-    // Método auxiliar para activar/desactivar todos los checkboxes
-    private toggleAllCheckboxes(checked: boolean) {
+    private toggleAllCheckboxes(checked: boolean): void {
         this.includeUppercase = checked;
         this.includeLowercase = checked;
         this.includeNumbers = checked;
@@ -78,22 +78,19 @@ export class HomeComponent {
         this.includesAll = checked;
     }
 
-    // Cuando cambia el checkbox "todos"
-    public onToggleAll(checked: boolean) {
+    public onToggleAll(checked: boolean): void {
         this.toggleAllCheckboxes(checked);
         this.reloadRandomString();
     }
 
-    // Cuando cambia cualquier checkbox individual
-    public onToggleIndividual() {
+    public onToggleIndividual(): void {
         // Verificar si todos están activados
         const allChecked = this.includeUppercase && this.includeLowercase &&
             this.includeNumbers && this.includeSymbols;
 
-        // Actualizar el estado de "todos"
         this.includesAll = allChecked;
 
-        // Si no hay ningún checkbox seleccionado, activar todos (para evitar estado inválido)
+        // Si no hay ningún checkbox seleccionado, activar todos
         if (!this.includeUppercase && !this.includeLowercase &&
             !this.includeNumbers && !this.includeSymbols) {
             this.toggleAllCheckboxes(true);
@@ -102,9 +99,10 @@ export class HomeComponent {
         this.reloadRandomString();
     }
 
-    public copyToClipboard() {
+    public copyToClipboard(): void {
         navigator.clipboard.writeText(this.inputValue).then(() => {
-            console.log('Contraseña copiada al portapapeles:', this.inputValue);
+            console.log('Contraseña copiada al portapapeles');
+            //TODO: poner un toast para el mensaje
         }).catch(err => {
             console.error('Error al copiar:', err);
         });
