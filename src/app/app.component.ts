@@ -8,5 +8,5 @@ import { FooterComponent } from './components/core/footer/footer.component';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  title = 'client';
+
 }

@@ -17,6 +17,7 @@ html {
     --text-primary: #111827;
     --text-secondary: #6b7280;
     --border-color: #e5e7eb;
+    --bg-transparent: #f3f4f6
 }
 
 .dark {
@@ -26,6 +27,11 @@ html {
     --text-primary: white;
     --text-secondary: #9ca3af;
     --border-color: #374151;
+    --bg-transparent: #2b394d;
+}
+
+.bg-transparent {
+    background-color: var(--bg-transparent);
 }
 
 /* Clases utilitarias personalizadas */
